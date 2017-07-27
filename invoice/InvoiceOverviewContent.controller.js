@@ -13,7 +13,7 @@ sap.ui.define([
             this._sSortField = null;
             this._bSortDescending = false;
             this._oRouterArgs = null;
-            this._aValidSortFields = ["CustomerName", "ProductName", "ProductID", "Salesperson"];
+            this._aValidSortFields = ["OrderID", "CustomerName", "Salesperson", "ProductID", "ProductName", "UnitPrice", "Quantity", "Discount", "ExtendedPrice"];
             this._sSearchQuery = null;
             this._initViewSettingsDialog();
             // make the search bookmarkable
@@ -40,13 +40,18 @@ sap.ui.define([
             });
             // init sorting (with simple sorters as custom data for all fields)
             this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-                key: "CustomerName",
-                text: "Customer Name",
+                key: "OrderID",
+                text: "Order ID",
                 selected: true // we do this because our MockData is sorted anyway by EmployeeID
             }));
             this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-                key: "ProductName",
-                text: "Product Name",
+                key: "CustomerName",
+                text: "Customer Name",
+                selected: false
+            }));
+            this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+                key: "Salesperson",
+                text: "Sales Person",
                 selected: false
             }));
             this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
@@ -55,10 +60,31 @@ sap.ui.define([
                 selected: false
             }));
             this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-                key: "Salesperson",
-                text: "Sales Person",
+                key: "ProductName",
+                text: "Produc tName",
                 selected: false
             }));
+            this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+                key: "UnitPrice",
+                text: "Unit Price",
+                selected: false
+            }));
+            this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+                key: "Quantity",
+                text: "Quantity",
+                selected: false
+            }));
+            this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+                key: "Discount",
+                text: "Discount",
+                selected: false
+            }));
+            this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+                key: "ExtendedPrice",
+                text: "Extended Price",
+                selected: false
+            }));
+
         },
         _applySearchFilter: function(sSearchQuery) {
             var aFilters, oFilter, oBinding;
