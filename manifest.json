@@ -66,6 +66,7 @@
                 "viewPath": "sap.ui.demo.wt.view",
                 "controlId": "app",
                 "controlAggregation": "pages",
+                "transition": "slide",
                 "bypassed": {
                     "target": "notFound"
                 }
@@ -98,7 +99,7 @@
                 {
                     "pattern": "invoicesOverview",
                     "name": "invoicesOverview",
-                    "target": "InvoiceOverviewContent"
+                    "target": ["invoicesOverview", "InvoiceOverviewContent"]
                 }
 
             ],
