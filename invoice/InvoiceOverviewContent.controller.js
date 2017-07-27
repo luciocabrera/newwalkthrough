@@ -17,7 +17,7 @@ sap.ui.define([
             this._sSearchQuery = null;
             this._initViewSettingsDialog();
             // make the search bookmarkable
-            oRouter.getRoute("invoiceOverview").attachMatched(this._onRouteMatched, this);
+            oRouter.getRoute("invoicesOverview").attachMatched(this._onRouteMatched, this);
         },
         _onRouteMatched: function(oEvent) {
             this._oRouterArgs = oEvent.getParameter("arguments");
@@ -26,7 +26,7 @@ sap.ui.define([
         onSortButtonPressed: function(oEvent) {
             this._oVSD.open();
         },
-        onSearchEmployeesTable: function(oEvent) {
+        onSearchInvoicesTable: function(oEvent) {
             var sQuery = oEvent.getSource().getValue();
             this._applySearchFilter(oEvent.getSource().getValue());
         },

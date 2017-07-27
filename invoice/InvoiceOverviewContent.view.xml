@@ -4,4 +4,34 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true"
 >
+    <Table
+        id="invoicesTable"
+        items="{invoice>/Invoices}">
+            <headerToolbar>
+                <Toolbar>
+                    <Title text="{i18n>Invoices}" level="H2"/>
+                    <ToolbarSpacer />
+                    <SearchField id="searchField"  search="onSearchInvoicesTable" width="50%" />
+                    <Button icon="sap-icon://sort" press="onSortButtonPressed" />
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column id="orderIDCol"><Text text="{i18n>OrderID}"/></Column>
+                <Column id="productIDCol" demandPopin="true"><Text text="{i18n>ProductID}"/></Column>
+                <Column id="productNameCol" demandPopin="true"><Text text="{i18n>ProductName}"/></Column>
+                <Column id="customerNameCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>CustomerName}"/></Column>
+                <Column id="salespersonCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Salesperson}"/></Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{invoice>OrderID}" />
+                        <Text text="{invoice>ProductID}" />
+                        <Text text="{invoice>ProductName}" />
+                        <Text text="{invoice>CustomerName}" />
+                        <Text text="{invoice>Salesperson}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+    </Table>
 </mvc:View>

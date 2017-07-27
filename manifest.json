@@ -98,7 +98,7 @@
                 {
                     "pattern": "invoicesOverview",
                     "name": "invoicesOverview",
-                    "target": "invoicesOverview"
+                    "target": "InvoiceOverviewContent"
                 }
 
             ],
@@ -125,8 +125,14 @@
                 },
                 "invoicesOverview": {
                     "viewPath": "sap.ui.demo.wt.invoice",
-                    "viewName": "InvoiceOverview",
-                    "viewLevel": 2
+                    "viewName": "InvoiceOverview"
+                },
+                "InvoiceOverviewContent": {
+                    "parent": "invoicesOverview",
+                    "viewPath": "sap.ui.demo.wt.invoice",
+                    "viewName": "InvoiceOverviewContent",
+                    "controlId": "InvoiceOverviewParent",
+                    "controlAggregation": "content"
                 }
 
             }
