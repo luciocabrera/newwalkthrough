@@ -1,13 +1,14 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], function(Controller) {
+    "sap/ui/demo/wt/controller/BaseController"
+], function(BaseController) {
     "use strict";
 
-    return Controller.extend("sap.ui.demo.wt.controller.App", {
+    return BaseController.extend("sap.ui.demo.wt.controller.App", {
 
-        onOpenDialog: function(Controller) {
-            this.getOwnerComponent().openHelloDialog();
+        onInit: function() {
+
         }
+
     });
 
 });

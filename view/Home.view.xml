@@ -1,0 +1,39 @@
+<mvc:View
+	controllerName="sap.ui.demo.wt.controller.Home"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page title="{i18n>homePageTitle}" class="sapUiResponsiveContentPadding">
+		<content>
+						<Button 
+							id="displayCustomersList"
+							icon="sap-icon://customer" 
+							press="onNavToCustomersList"
+							tooltip="{i18n>Home.CustomerButtonTooltip}"
+							class="sapUiTinyMarginEnd" />
+						<Button 
+							id="displaySuppliersList"
+							icon="sap-icon://supplier" 
+							press="onNavToSuppliersList"
+							tooltip="{i18n>Home.SupplierButtonTooltip}"
+							class="sapUiTinyMarginEnd" />
+						<Button 
+							id="displayProductsList"
+							icon="sap-icon://product" 
+							press="onNavToProductsList"
+							tooltip="{i18n>Home.ProductButtonTooltip}"
+							class="sapUiTinyMarginEnd" />
+						<Button 
+							id="displayInvoicesList"
+							icon="sap-icon://wallet" 
+							press="onNavToInvoicesList"
+							tooltip="{i18n>Home.InvoiceButtonTooltip}"
+							class="sapUiTinyMarginEnd" />
+						<Button 
+							id="displayInvoicesOverview"
+							icon="sap-icon://wallet" 
+							press="onNavToInvoicesOverview"
+							tooltip="{i18n>Home.InvoiceButtonTooltip}"
+							class="sapUiTinyMarginEnd" />
+		</content>
+	</Page>
+</mvc:View>

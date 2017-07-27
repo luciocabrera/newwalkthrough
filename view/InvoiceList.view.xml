@@ -2,9 +2,15 @@
 	controllerName="sap.ui.demo.wt.controller.InvoiceList"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
+		<Page id="invoiceListPage" title="{i18n>InvoiceList}"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		class="sapUiResponsiveContentPadding">
+		<content>
 	<List
 		id="invoiceList"
 		class="sapUiResponsiveMargin"
+		
 		width="auto"
 		items="{
 			path : 'invoice>/Invoices',
@@ -44,4 +50,6 @@
 			</ObjectListItem>
 		</items>
 	</List>
+			</content>
+	</Page>
 </mvc:View>

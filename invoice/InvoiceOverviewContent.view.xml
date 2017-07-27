@@ -1,0 +1,7 @@
+<mvc:View
+	controllerName="sap.ui.demo.wt.invoice.InvoiceOverviewContent"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+>
+</mvc:View>
