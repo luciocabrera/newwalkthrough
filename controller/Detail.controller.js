@@ -4,7 +4,7 @@ sap.ui.define([
     "use strict";
     return Controller.extend("sap.ui.demo.wt.controller.Detail", {
         onInit: function() {
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            var oRouter = this.getRouter(this);
             oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this)
         },
         _onObjectMatched: function(oEvent) {

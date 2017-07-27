@@ -1,9 +1,8 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History"
-], function(Controller, History) {
+    "sap/ui/demo/wt/controller/BaseController"
+], function(BaseController) {
     "use strict";
-    return Controller.extend("sap.ui.demo.wt.controller.Invoice", {
+    return BaseController.extend("sap.ui.demo.wt.controller.Invoice", {
         onInit: function() {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.getRoute("invoice").attachPatternMatched(this._onObjectMatched, this)
@@ -13,17 +12,6 @@ sap.ui.define([
                 path: "/" + oEvent.getParameter("arguments").invoicePath,
                 model: "invoice"
             });
-        },
-        onNavBack: function(oEvent) {
-            var oHistory = History.getInstance();
-            var sPreviousHash = oHistory.getPreviousHash();
-
-            if (sPreviousHash !== undefined) {
-                window.history.go(-1);
-            } else {
-                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                oRouter.navTo("overview", {}, true);
-            }
         }
     });
 });
