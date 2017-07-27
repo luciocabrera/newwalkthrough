@@ -1,0 +1,16 @@
+<mvc:View
+    controllerName="sap.ui.demo.wt.product.ProductOverview"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout">
+    <Page
+        id="ProductOverviewParent"
+        class="sapUiResponsiveContentPadding"
+        title="{i18n>Product.productOverview}"
+        showNavButton="true"
+        onNavButtonPress="onNavBack">
+        <content>
+            <!-- Inserted by the routing -->
+        </content>   
+    </Page>
+</mvc:View>

@@ -13,20 +13,20 @@
                 <Toolbar>
                     <Title text="{i18n>Invoices}" level="H2"/>
                     <ToolbarSpacer />
-                    <SearchField id="searchField"  search="onSearchInvoicesTable" width="50%" />
+                    <SearchField id="invoiceSearchField"  search="onSearchInvoicesTable" width="50%" />
                     <Button icon="sap-icon://sort" press="onSortButtonPressed" />
                 </Toolbar>
             </headerToolbar>
             <columns>
-                <Column id="orderIDCol"><Text text="{i18n>OrderID}"/></Column>
-								<Column id="customerNameCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>CustomerName}"/></Column>
-                <Column id="salespersonCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Salesperson}"/></Column>
-                <Column id="productIDCol" demandPopin="true"><Text text="{i18n>ProductID}"/></Column>
-                <Column id="productNameCol" demandPopin="true"><Text text="{i18n>ProductName}"/></Column>
-								<Column id="unitPriceCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>UnitPrice}"/></Column>
-								<Column id="quantityCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Quantity}"/></Column>
-								<Column id="discountCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Discount}"/></Column>
-								<Column id="extendedPriceCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>ExtendedPrice}"/></Column>
+                <Column id="invoiceOrderIDCol"><Text text="{i18n>OrderID}"/></Column>
+								<Column id="invoiceCustomerNameCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>CustomerName}"/></Column>
+                <Column id="invoiceSalespersonCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Salesperson}"/></Column>
+                <Column id="invoiceProductIDCol" demandPopin="true"><Text text="{i18n>ProductID}"/></Column>
+                <Column id="invoiceProductNameCol" demandPopin="true"><Text text="{i18n>ProductName}"/></Column>
+								<Column id="invoiceUnitPriceCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>UnitPrice}"/></Column>
+								<Column id="invoiceQuantityCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Quantity}"/></Column>
+								<Column id="invoiceDiscountCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Discount}"/></Column>
+								<Column id="invoiceExtendedPriceCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>ExtendedPrice}"/></Column>
             </columns>
             <items>
                 <ColumnListItem type="Active">

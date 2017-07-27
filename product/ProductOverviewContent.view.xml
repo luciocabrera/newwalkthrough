@@ -1,0 +1,68 @@
+<mvc:View
+	controllerName="sap.ui.demo.wt.product.ProductOverviewContent"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+>
+    <Table
+        id="productsTable"
+        items="{product>/Products}"
+				itemPress="onItemPress"
+				>
+            <headerToolbar>
+                <Toolbar>
+                    <Title text="{i18n>Product.Products}" level="H2"/>
+                    <ToolbarSpacer />
+                    <SearchField id="productsearchField"  search="onSearchProductsTable" width="50%" />
+                    <Button icon="sap-icon://sort" press="onSortButtonPressed" />
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column id="productProductIDCol" demandPopin="true"><Text text="{i18n>Product.ProductID}"/></Column>
+                <Column id="productProductNameCol" demandPopin="true"><Text text="{i18n>Product.ProductName}"/></Column>
+								<Column id="productQuantityPerUnitCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Product.QuantityPerUnit}"/></Column>
+								<Column id="productUnitPriceCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Product.UnitPrice}"/></Column>
+								<Column id="productUnitsInStockCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Product.UnitsInStock}"/></Column>
+								<Column id="productUnitsOnOrderCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Product.UnitsOnOrder}"/></Column>
+								<Column id="productReorderLevelCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Product.ReorderLevel}"/></Column>
+								<Column id="productDiscontinuedCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Product.Discontinued}"/></Column>
+            </columns>
+            <items>
+                <ColumnListItem type="Active">
+                    <cells>
+                        <Text text="{product>ProductID}" />
+                        <Text text="{product>ProductName}" />
+												<Text text="{product>QuantityPerUnit}" />
+												<Text text="{
+													parts: [                
+														{path: 'product>UnitPrice'},
+														{path: 'formatter/currency'}
+														],
+														type: 'sap.ui.model.type.Currency'       
+													}" 
+												/>
+												<Text 
+													text="{
+														parts: [                
+															{path: 'product>UnitsInStock'},
+															{path: 'formatter/currency'}
+														],
+														type: 'sap.ui.model.type.Currency'       
+													}" 
+												/>
+												<Text 
+													text="{
+														parts: [                
+															{path: 'product>UnitsOnOrder'},
+															{path: 'formatter/currency'}
+														],
+														type: 'sap.ui.model.type.Currency'       
+														}" 
+												/> 
+                        <Text text="{product>ReorderLevel}" />
+                        <Text text="{product>Discontinued}" />
+                   </cells>
+                </ColumnListItem>
+            </items>
+    </Table>
+</mvc:View>

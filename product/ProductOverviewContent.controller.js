@@ -5,19 +5,19 @@ sap.ui.define([
     "sap/ui/model/Sorter"
 ], function(BaseController, Filter, FilterOperator, Sorter) {
     "use strict";
-    return BaseController.extend("sap.ui.demo.wt.invoice.InvoiceOverviewContent", {
+    return BaseController.extend("sap.ui.demo.wt.product.ProductOverviewContent", {
         onInit: function() {
             var oRouter = this.getRouter();
-            this._oTable = this.getView().byId("invoicesTable");
+            this._oTable = this.getView().byId("productsTable");
             this._oVSD = null;
             this._sSortField = null;
             this._bSortDescending = false;
             this._oRouterArgs = null;
-            this._aValidSortFields = ["OrderID", "CustomerName", "Salesperson", "ProductID", "ProductName", "UnitPrice", "Quantity", "Discount", "ExtendedPrice"];
+            this._aValidSortFields = ["ProductID", "ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued"];
             this._sSearchQuery = null;
             this._initViewSettingsDialog();
             // make the search bookmarkable
-            oRouter.getRoute("invoicesOverview").attachMatched(this._onRouteMatched, this);
+            oRouter.getRoute("productsOverview").attachMatched(this._onRouteMatched, this);
         },
         _onRouteMatched: function(oEvent) {
             this._oRouterArgs = oEvent.getParameter("arguments");
@@ -26,13 +26,13 @@ sap.ui.define([
         onSortButtonPressed: function(oEvent) {
             this._oVSD.open();
         },
-        onSearchInvoicesTable: function(oEvent) {
+        onSearchProductsTable: function(oEvent) {
             var sQuery = oEvent.getSource().getValue();
             this._applySearchFilter(oEvent.getSource().getValue());
         },
         _initViewSettingsDialog: function() {
             var oRouter = this.getRouter();
-            this._oVSD = new sap.m.ViewSettingsDialog("vsd", {
+            this._oVSD = new sap.m.ViewSettingsDialog("productVsd", {
                 confirm: function(oEvent) {
                     var oSortItem = oEvent.getParameter("sortItem");
                     this._applySorter(oSortItem.getKey(), oEvent.getParameter("sortDescending"));
@@ -40,28 +40,18 @@ sap.ui.define([
             });
             // init sorting (with simple sorters as custom data for all fields)
             this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-                key: "OrderID",
-                text: "Order ID",
+                key: "ProductID",
+                text: "Product ID",
                 selected: true // we do this because our MockData is sorted anyway by EmployeeID
             }));
             this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-                key: "CustomerName",
-                text: "Customer Name",
-                selected: false
-            }));
-            this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-                key: "Salesperson",
-                text: "Sales Person",
-                selected: false
-            }));
-            this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-                key: "ProductID",
-                text: "Product ID",
-                selected: false
-            }));
-            this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
                 key: "ProductName",
-                text: "Produc tName",
+                text: "Product Name",
+                selected: false
+            }));
+            this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+                key: "QuantityPerUnit",
+                text: "Quantity Per Unit",
                 selected: false
             }));
             this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
@@ -70,18 +60,23 @@ sap.ui.define([
                 selected: false
             }));
             this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-                key: "Quantity",
-                text: "Quantity",
+                key: "UnitsInStock",
+                text: "Units In Stock",
                 selected: false
             }));
             this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-                key: "Discount",
-                text: "Discount",
+                key: "UnitsOnOrder",
+                text: "Units On Order",
                 selected: false
             }));
             this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-                key: "ExtendedPrice",
-                text: "Extended Price",
+                key: "ReorderLevel",
+                text: "Reorder Level",
+                selected: false
+            }));
+            this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+                key: "Discontinued",
+                text: "Discontinued",
                 selected: false
             }));
 
@@ -93,13 +88,12 @@ sap.ui.define([
                 return;
             }
             this._sSearchQuery = sSearchQuery;
-            this.byId("invoiceSearchField").setValue(sSearchQuery);
+            this.byId("productsearchField").setValue(sSearchQuery);
             // add filters for search
             aFilters = [];
             if (sSearchQuery && sSearchQuery.length > 0) {
-                aFilters.push(new Filter("CustomerName", FilterOperator.Contains, sSearchQuery));
+                //aFilters.push(new Filter("ProductID", FilterOperator.Contains, sSearchQuery));
                 aFilters.push(new Filter("ProductName", FilterOperator.Contains, sSearchQuery));
-                aFilters.push(new Filter("Salesperson", FilterOperator.Contains, sSearchQuery));
                 oFilter = new Filter({ filters: aFilters, and: false }); // OR filter
             } else {
                 oFilter = null;
@@ -140,7 +134,6 @@ sap.ui.define([
             }
         },
         _syncViewSettingsDialogSorter: function(sSortField, bSortDescending) {
-            // the possible keys are: "CustomerName" | "ProductName" | "ProductID" | "Salesperson"
             // Note: no input validation is implemented here 
             this._oVSD.setSelectedSortItem(sSortField);
             this._oVSD.setSortDescending(bSortDescending);
@@ -149,8 +142,8 @@ sap.ui.define([
             var oItem = oEvent.getParameter("listItem")
             var oCtx = oItem.getBindingContext();
             var oRouter = this.getRouter(this);
-            oRouter.navTo("invoice", {
-                invoicePath: oItem.getBindingContext("invoice").getPath().substr(1)
+            oRouter.navTo("product", {
+                invoicePath: oItem.getBindingContext("product").getPath().substr(1)
             });
         }
     });

@@ -12,7 +12,7 @@
         },
         "ach": "CA-UI5-DOC",
         "dataSources": {
-            "invoiceRemote": {
+            "northwindRemote": {
                 "uri": "http://localhost/odata/northwind/",
                 "type": "OData",
                 "settings": {
@@ -51,7 +51,10 @@
                 }
             },
             "invoice": {
-                "dataSource": "invoiceRemote"
+                "dataSource": "northwindRemote"
+            },
+            "product": {
+                "dataSource": "northwindRemote"
             }
         },
         "resources": {
@@ -97,9 +100,14 @@
                     "target": "invoices"
                 },
                 {
-                    "pattern": "invoicesOverview",
+                    "pattern": "invoicesOverview:?query:",
                     "name": "invoicesOverview",
                     "target": ["invoicesOverview", "InvoiceOverviewContent"]
+                },
+                {
+                    "pattern": "productsOverview:?query:",
+                    "name": "productsOverview",
+                    "target": "productOverviewContent"
                 }
 
             ],
@@ -133,6 +141,17 @@
                     "viewPath": "sap.ui.demo.wt.invoice",
                     "viewName": "InvoiceOverviewContent",
                     "controlId": "InvoiceOverviewParent",
+                    "controlAggregation": "content"
+                },
+                "productsOverview": {
+                    "viewPath": "sap.ui.demo.wt.product",
+                    "viewName": "ProductOverview"
+                },
+                "productOverviewContent": {
+                    "parent": "productsOverview",
+                    "viewPath": "sap.ui.demo.wt.product",
+                    "viewName": "ProductOverviewContent",
+                    "controlId": "ProductOverviewParent",
                     "controlAggregation": "content"
                 }
 
