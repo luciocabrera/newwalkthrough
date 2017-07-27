@@ -144,6 +144,14 @@ sap.ui.define([
             // Note: no input validation is implemented here 
             this._oVSD.setSelectedSortItem(sSortField);
             this._oVSD.setSortDescending(bSortDescending);
+        },
+        onItemPress: function(oEvent) {
+            var oItem = oEvent.getParameter("listItem")
+            var oCtx = oItem.getBindingContext();
+            var oRouter = this.getRouter(this);
+            oRouter.navTo("invoice", {
+                invoicePath: oItem.getBindingContext("invoice").getPath().substr(1)
+            });
         }
     });
 });
