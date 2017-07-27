@@ -80,11 +80,6 @@
                     "target": "home"
                 },
                 {
-                    "pattern": "overview",
-                    "name": "overview",
-                    "target": "overview"
-                },
-                {
                     "pattern": "detail/{invoicePath}",
                     "name": "detail",
                     "target": "detail"
@@ -107,7 +102,12 @@
                 {
                     "pattern": "productsOverview:?query:",
                     "name": "productsOverview",
-                    "target": "productOverviewContent"
+                    "target": ["productOverviewTop", "productOverviewContent"]
+                },
+                {
+                    "pattern": "product/{productPath}",
+                    "name": "product",
+                    "target": "product"
                 }
 
             ],
@@ -120,14 +120,15 @@
                     "viewName": "NotFound",
                     "transition": "show"
                 },
-                "overview": {
-                    "viewName": "Overview"
-                },
                 "detail": {
                     "viewName": "Detail"
                 },
                 "invoice": {
                     "viewName": "Invoice"
+                },
+                "product": {
+                    "viewPath": "sap.ui.demo.wt.product",
+                    "viewName": "Product"
                 },
                 "invoices": {
                     "viewName": "invoiceList"
@@ -151,6 +152,13 @@
                     "parent": "productsOverview",
                     "viewPath": "sap.ui.demo.wt.product",
                     "viewName": "ProductOverviewContent",
+                    "controlId": "ProductOverviewParent",
+                    "controlAggregation": "content"
+                },
+                "productOverviewTop": {
+                    "parent": "productsOverview",
+                    "viewPath": "sap.ui.demo.wt.product",
+                    "viewName": "ProductOverviewTop",
                     "controlId": "ProductOverviewParent",
                     "controlAggregation": "content"
                 }

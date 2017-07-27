@@ -143,7 +143,7 @@ sap.ui.define([
             var oCtx = oItem.getBindingContext();
             var oRouter = this.getRouter(this);
             oRouter.navTo("product", {
-                invoicePath: oItem.getBindingContext("product").getPath().substr(1)
+                productPath: oItem.getBindingContext("product").getPath().substr(1)
             });
         }
     });

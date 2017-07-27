@@ -1,0 +1,86 @@
+<mvc:View
+	controllerName="sap.ui.demo.wt.product.Product"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	busyIndicatorDelay="0">
+	<Page
+		id="productPage"
+		title="{i18n>Product.ProductDetailsOf} {product>ProductID}"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		class="sapUiResponsiveContentPadding">
+		<content>
+			<Panel
+				id="productPanel"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>Product.ProductIDColon} {product>ProductID}" level="H2"/>
+						<ToolbarSpacer />
+						<Button 
+							icon="sap-icon://customer" 
+							press="onNavToCustomer"
+							tooltip="{i18n>CustomerButtonTooltip}" />
+						<Button 
+							icon="sap-icon://supplier" 
+							press="onNavToSupplier"
+							tooltip="{i18n>SupplierButtonTooltip}" />
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<f:SimpleForm
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+						columnsL="1" columnsM="1">
+						<f:content>
+							<Label text="{i18n>Product.ProductID}" />
+							<Text text="{product>ProductID}" />
+							<Label text="{i18n>Product.ProductName}" />
+							<Text text="{product>ProductName}" />
+							<Label text="{i18n>Product.QuantityPerUnit}" />
+							<Text text="{product>QuantityPerUnit}" />
+							<Label text="{i18n>Product.UnitPrice}" />
+							<Text 
+								text="{
+									parts: [                
+										{path: 'product>UnitPrice'},
+										{path: 'formatter/currency'}
+									],
+									type: 'sap.ui.model.type.Currency'       
+								}" 
+							/>
+							<Label text="{i18n>Product.UnitsInStock}" />
+							<Text 
+								text="{
+									parts: [                
+										{path: 'product>UnitsInStock'},
+										{path: 'formatter/currency'}
+									],
+									type: 'sap.ui.model.type.Currency'       
+								}" 
+							/>
+							<Label text="{i18n>Product.UnitsOnOrder}" />
+							<Text 
+								text="{
+									parts: [                
+										{path: 'product>UnitsOnOrder'},
+										{path: 'formatter/currency'}
+									],
+									type: 'sap.ui.model.type.Currency'       
+									}" 
+							/> 
+							<Label text="{i18n>Product.ReorderLevel}" />
+							<Text text="{product>ReorderLevel}" />
+							<Label text="{i18n>Product.Discontinued}" />
+							<Text text="{product>Discontinued}" />
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>

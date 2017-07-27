@@ -40,7 +40,6 @@ sap.ui.define([
             oCtx = oItem.getBindingContext();
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.navTo("invoice", {
-                //invoiceId: oCtx.getProperty("InvoiceID")
                 invoicePath: oItem.getBindingContext("invoice").getPath().substr(1)
             });
 
