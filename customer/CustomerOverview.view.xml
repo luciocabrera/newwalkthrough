@@ -1,0 +1,16 @@
+<mvc:View
+	controllerName="sap.ui.demo.wt.customer.Customer"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+  xmlns:l="sap.ui.layout">
+    <Page
+        id="CustomerOverviewParent"
+        class="sapUiResponsiveContentPadding"
+        title="{i18n>Customer.customerOverview}"
+        showNavButton="true"
+        onNavButtonPress="onNavBack">
+        <content>
+            <!-- Inserted by the routing -->
+        </content>   
+    </Page>
+</mvc:View>

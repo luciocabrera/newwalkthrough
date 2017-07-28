@@ -1,0 +1,47 @@
+<mvc:View
+	controllerName="sap.ui.demo.wt.customer.CustomerOverviewContent"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+>
+    <Table
+        id="customersTable"
+        items="{customer>/Customers}"
+				itemPress="onItemPress"
+				>
+            <headerToolbar>
+                <Toolbar>
+                    <Title text="{i18n>Customer.Customers}" level="H2"/>
+                    <ToolbarSpacer />
+                    <SearchField id="customersearchField"  search="onSearchCustomersTable" width="50%" />
+                    <Button icon="sap-icon://sort" press="onSortButtonPressed" />
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column id="CustomerIDCol" demandPopin="true"><Text text="{i18n>Customer.SupplierID}"/></Column>
+                <Column id="CompanyNameCol" demandPopin="true"><Text text="{i18n>Customer.CompanyName}"/></Column>
+								<Column id="ContactNameCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Customer.ContactName}"/></Column>
+								<Column id="CityCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Customer.City}"/></Column>
+								<Column id="RegionCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Customer.Region}"/></Column>
+								<Column id="PostalCodeCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Customer.PostalCode}"/></Column>
+								<Column id="CountryCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Customer.Country}"/></Column>
+								<Column id="PhoneCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Customer.Phone}"/></Column>
+								<Column id="FaxCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Customer.Fax}"/></Column>
+            </columns>
+            <items>
+                <ColumnListItem type="Active">
+                    <cells>
+                        <Text text="{customer>CustomerID}" />
+                        <Text text="{customer>CompanyName}" />
+												<Text text="{customer>ContactName}" />
+												<Text text="{customer>City}" />
+												<Text text="{customer>Region}" />
+												<Text text="{customer>PostalCode}" />
+												<Text text="{customer>Country}" />
+												<Text text="{customer>Phone}" />
+												<Text text="{customer>Fax}" />
+                   </cells>
+                </ColumnListItem>
+            </items>
+    </Table>
+</mvc:View>

@@ -1,0 +1,54 @@
+<mvc:View
+	controllerName="sap.ui.demo.wt.customer.Customer"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	busyIndicatorDelay="0">
+	<Page
+		id="customerPage"
+		title="{i18n>Customer.CustomerDetailsOf} {customer>CustomerID}"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		class="sapUiResponsiveContentPadding">
+		<content>
+			<Panel
+				id="customerPanel"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+				<content>
+					<f:SimpleForm
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+						columnsL="1" columnsM="1">
+						<f:content>
+							<Label text="{i18n>Customer.CustomerID}" />
+							<Text text="{customer>CustomerID}" />
+							<Label text="{i18n>Customer.CompanyName}" />
+							<Text text="{customer>CompanyName}" />
+							<Label text="{i18n>Customer.ContactName}" />
+							<Text text="{customer>ContactName}" />
+							<Label text="{i18n>Customer.ContactTitle}" />
+							<Text text="{customer>ContactTitle}" />
+							<Label text="{i18n>Customer.Address}" />
+							<Text text="{customer>Address}" />
+							<Label text="{i18n>Customer.City}" />
+							<Text text="{customer>City}" />
+							<Label text="{i18n>Customer.Region}" />
+							<Text text="{customer>Region}" />
+							<Label text="{i18n>Customer.PostalCode}" />
+							<Text text="{customer>PostalCode}" />
+							<Label text="{i18n>Customer.Country}" />
+							<Text text="{customer>Country}" />
+							<Label text="{i18n>Customer.Phone}" />
+							<Text text="{customer>Phone}" />
+							<Label text="{i18n>Customer.Fax}" />
+							<Text text="{customer>Fax}" />
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>

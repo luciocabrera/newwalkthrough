@@ -58,6 +58,9 @@
             },
             "supplier": {
                 "dataSource": "northwindRemote"
+            },
+            "customer": {
+                "dataSource": "northwindRemote"
             }
         },
         "resources": {
@@ -121,6 +124,16 @@
                     "pattern": "supplier/{supplierPath}",
                     "name": "supplier",
                     "target": "supplier"
+                },
+                {
+                    "pattern": "customersOverview",
+                    "name": "customersOverview",
+                    "target": ["customersOverview", "customerOverviewContent"]
+                },
+                {
+                    "pattern": "customer/{customerPath}",
+                    "name": "customer",
+                    "target": "customer"
                 }
             ],
             "targets": {
@@ -188,8 +201,22 @@
                     "viewName": "SupplierOverviewContent",
                     "controlId": "SupplierOverviewParent",
                     "controlAggregation": "content"
+                },
+                "customersOverview": {
+                    "viewPath": "sap.ui.demo.wt.customer",
+                    "viewName": "CustomerOverview"
+                },
+                "customer": {
+                    "viewPath": "sap.ui.demo.wt.customer",
+                    "viewName": "Customer"
+                },
+                "customerOverviewContent": {
+                    "parent": "customersOverview",
+                    "viewPath": "sap.ui.demo.wt.customer",
+                    "viewName": "CustomerOverviewContent",
+                    "controlId": "CustomerOverviewParent",
+                    "controlAggregation": "content"
                 }
-
             }
         }
     }
