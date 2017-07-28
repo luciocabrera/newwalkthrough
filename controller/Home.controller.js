@@ -14,7 +14,7 @@ sap.ui.define([
             this.getRouter().navTo("customersList");
         },
         onNavToSuppliersList: function(oEvent) {
-            this.getRouter().navTo("suppliersList");
+            this.getRouter().navTo("suppliersOverview");
         },
         onNavToProductsList: function(oEvent) {
             this.getRouter().navTo("productsOverview");

@@ -1,0 +1,47 @@
+<mvc:View
+	controllerName="sap.ui.demo.wt.supplier.SupplierOverviewContent"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+>
+    <Table
+        id="suppliersTable"
+        items="{supplier>/Suppliers}"
+				itemPress="onItemPress"
+				>
+            <headerToolbar>
+                <Toolbar>
+                    <Title text="{i18n>Supplier.Suppliers}" level="H2"/>
+                    <ToolbarSpacer />
+                    <SearchField id="suppliersearchField"  search="onSearchSuppliersTable" width="50%" />
+                    <Button icon="sap-icon://sort" press="onSortButtonPressed" />
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column id="SupplierIDCol" demandPopin="true"><Text text="{i18n>Supplier.SupplierID}"/></Column>
+                <Column id="CompanyNameCol" demandPopin="true"><Text text="{i18n>Supplier.CompanyName}"/></Column>
+								<Column id="ContactNameCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Supplier.ContactName}"/></Column>
+								<Column id="CityCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Supplier.City}"/></Column>
+								<Column id="RegionCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Supplier.Region}"/></Column>
+								<Column id="PostalCodeCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Supplier.PostalCode}"/></Column>
+								<Column id="CountryCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Supplier.Country}"/></Column>
+								<Column id="PhoneCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Supplier.Phone}"/></Column>
+								<Column id="FaxCol" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>Supplier.Fax}"/></Column>
+            </columns>
+            <items>
+                <ColumnListItem type="Active">
+                    <cells>
+                        <Text text="{supplier>SupplierID}" />
+                        <Text text="{supplier>CompanyName}" />
+												<Text text="{supplier>ContactName}" />
+												<Text text="{supplier>City}" />
+												<Text text="{supplier>Region}" />
+												<Text text="{supplier>PostalCode}" />
+												<Text text="{supplier>Country}" />
+												<Text text="{supplier>Phone}" />
+												<Text text="{supplier>Fax}" />
+                   </cells>
+                </ColumnListItem>
+            </items>
+    </Table>
+</mvc:View>

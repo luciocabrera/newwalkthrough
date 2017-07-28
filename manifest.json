@@ -55,6 +55,9 @@
             },
             "product": {
                 "dataSource": "northwindRemote"
+            },
+            "supplier": {
+                "dataSource": "northwindRemote"
             }
         },
         "resources": {
@@ -108,8 +111,17 @@
                     "pattern": "product/{productPath}",
                     "name": "product",
                     "target": "product"
+                },
+                {
+                    "pattern": "suppliersOverview:?query:",
+                    "name": "suppliersOverview",
+                    "target": ["suppliersOverview", "supplierOverviewContent"]
+                },
+                {
+                    "pattern": "supplier/{supplierPath}",
+                    "name": "supplier",
+                    "target": "supplier"
                 }
-
             ],
             "targets": {
                 "home": {
@@ -129,6 +141,10 @@
                 "product": {
                     "viewPath": "sap.ui.demo.wt.product",
                     "viewName": "Product"
+                },
+                "supplier": {
+                    "viewPath": "sap.ui.demo.wt.supplier",
+                    "viewName": "Supplier"
                 },
                 "invoices": {
                     "viewName": "invoiceList"
@@ -160,6 +176,17 @@
                     "viewPath": "sap.ui.demo.wt.product",
                     "viewName": "ProductOverviewTop",
                     "controlId": "ProductOverviewParent",
+                    "controlAggregation": "content"
+                },
+                "suppliersOverview": {
+                    "viewPath": "sap.ui.demo.wt.supplier",
+                    "viewName": "SupplierOverview"
+                },
+                "supplierOverviewContent": {
+                    "parent": "suppliersOverview",
+                    "viewPath": "sap.ui.demo.wt.supplier",
+                    "viewName": "SupplierOverviewContent",
+                    "controlId": "SupplierOverviewParent",
                     "controlAggregation": "content"
                 }
 

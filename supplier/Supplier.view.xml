@@ -1,0 +1,51 @@
+<mvc:View
+	controllerName="sap.ui.demo.wt.supplier.Supplier"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	busyIndicatorDelay="0">
+	<Page
+		id="supplierPage"
+		title="{i18n>Supplier.SupplierDetailsOf} {supplier>SupplierID}"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		class="sapUiResponsiveContentPadding">
+		<content>
+			<Panel
+				id="supplierPanel"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+
+				<content>
+					<f:SimpleForm
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+						columnsL="1" columnsM="1">
+						<f:content>
+							<Label text="{i18n>Supplier.SupplierID}" />
+							<Text text="{supplier>SupplierID}" />
+							<Label text="{i18n>Supplier.CompanyName}" />
+							<Text text="{supplier>CompanyName}" />
+							<Label text="{i18n>Supplier.ContactName}" />
+							<Text text="{supplier>ContactName}" />
+							<Label text="{i18n>Supplier.ContactTitle}" />
+							<Text text="{supplier>ContactTitle}" />
+							<Label text="{i18n>Supplier.Address}" />
+							<Text text="{supplier>Address}" />
+							<Label text="{i18n>Supplier.City}" />
+							<Text text="{supplier>City}" />
+							<Label text="{i18n>Supplier.Region}" />
+							<Text text="{supplier>Region}" />
+							<Label text="{i18n>Supplier.PostalCode}" />
+							<Text text="{supplier>PostalCode}" />
+							<Label text="{i18n>Supplier.Country}" />
+							<Text text="{supplier>Country}" />
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>
