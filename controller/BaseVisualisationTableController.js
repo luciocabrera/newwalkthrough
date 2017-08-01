@@ -14,6 +14,7 @@ sap.ui.define([
             this._bSortDescending = false;
             this._oRouterArgs = null;
             this._aValidSortFields = aValidSortFields;
+            this._aValidFilterFields = aValidFilterFields;
             this._sSearchQuery = null;
             oRouter.getRoute(sRouteToMatch).attachMatched(this._onRouteMatched, this);
             this._initViewSettingsDialog(sTableID + "Vsd", aValidSortFields);
@@ -25,10 +26,6 @@ sap.ui.define([
         onSortButtonPressed: function(oEvent) {
             this._oVSD.open();
         },
-        onSearchTable: function(oEvent) {
-            var sQuery = oEvent.getSource().getValue();
-            this._applySearchFilter(oEvent.getSource().getValue());
-        },
         /**
          * Applies sorting on our table control.
          * @param {string} sSortField	  the name of the field used for sorting
@@ -37,10 +34,8 @@ sap.ui.define([
          */
         _applySorter: function(sSortField, sortDescending, aValidSortFields) {
             var bSortDescending, oBinding, oSorter;
-            // only continue if we have a valid sort field
             aValidSortFields.forEach(function(condition) {
-
-                // if (sSortField && condition.indexOf(sSortField) > -1) {
+                // only continue if we have a valid sort field
                 if (sSortField === condition.key) {
                     // convert the sort order to a boolean value
                     if (typeof sortDescending === "string") {
@@ -62,10 +57,7 @@ sap.ui.define([
                     oBinding = this._oTable.getBinding("items");
                     oBinding.sort(oSorter);
                 }
-
             }.bind(this));
-
-
         },
         _syncViewSettingsDialogSorter: function(sSortField, bSortDescending) {
             // Note: no input validation is implemented here 
@@ -86,17 +78,44 @@ sap.ui.define([
                     this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
                         key: condition.key,
                         text: condition.text,
-                        selected: true // we do this because our MockData is sorted anyway by EmployeeID
+                        selected: true //select by default the first item in the list
                     }));
                 } else {
                     this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
                         key: condition.key,
                         text: condition.text,
-                        selected: false // we do this because our MockData is sorted anyway by EmployeeID
+                        selected: false
                     }));
                 }
                 nCount = nCount + 1;
             }.bind(this));
+        },
+        onSearchTable: function(oEvent) {
+            var sQuery = oEvent.getSource().getValue();
+            this._applySearchFilter(oEvent.getSource().getValue(), this._aValidFilterFields);
+        },
+        _applySearchFilter: function(sSearchQuery, aValidFilterFields) {
+            var aFilters, oFilter, oBinding, sID;
+            sID = sTableID + "searchField";
+            // first check if we already have this search value
+            if (this._sSearchQuery === sSearchQuery) {
+                return;
+            }
+            this._sSearchQuery = sSearchQuery;
+            this.byId(sID).setValue(sSearchQuery);
+            // add filters for search
+            aFilters = [];
+            if (sSearchQuery && sSearchQuery.length > 0) {
+                this.aValidFilterFields.forEach(function(condition) {
+                    aFilters.push(new Filter(condition.key, FilterOperator.Contains, sSearchQuery));
+                }.bind(this));
+                oFilter = new Filter({ filters: aFilters, and: false }); // OR filter
+            } else {
+                oFilter = null;
+            }
+            // update list binding
+            oBinding = this._oTable.getBinding("items");
+            oBinding.filter(oFilter, "Application");
         }
     });
 });

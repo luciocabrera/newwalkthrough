@@ -13,7 +13,7 @@
                 <Toolbar>
                     <Title text="{i18n>Supplier.Suppliers}" level="H2"/>
                     <ToolbarSpacer />
-                    <SearchField id="suppliersearchField"  search="onSearchTable" width="50%" />
+                    <SearchField id="suppliersTablesearchField"  search="onSearchTable" width="50%" />
                     <Button icon="sap-icon://sort" press="onSortButtonPressed" />
                 </Toolbar>
             </headerToolbar>
