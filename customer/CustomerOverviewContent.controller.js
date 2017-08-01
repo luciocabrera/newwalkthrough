@@ -1,5 +1,5 @@
 sap.ui.define([
-    "sap/ui/demo/wt/controller/BaseController",
+    "sap/ui/demo/wt/controller/BaseVisualisationTableController",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/model/Sorter"
@@ -7,28 +7,10 @@ sap.ui.define([
     "use strict";
     return BaseController.extend("sap.ui.demo.wt.customer.CustomerOverviewContent", {
         onInit: function() {
-            var oRouter = this.getRouter();
-            this._oTable = this.getView().byId("customersTable");
-            this._oVSD = null;
-            this._sSortField = null;
-            this._bSortDescending = false;
-            this._oRouterArgs = null;
-            this._aValidSortFields = ["CompanyName", "ContactName", "City", "Country"];
-            this._sSearchQuery = null;
-            this._initViewSettingsDialog();
-            // make the search bookmarkable
-            oRouter.getRoute("customersOverview").attachMatched(this._onRouteMatched, this);
-        },
-        _onRouteMatched: function(oEvent) {
-            this._oRouterArgs = oEvent.getParameter("arguments");
-            this._oRouterArgs.query = this._oRouterArgs["?query"] || {};
-        },
-        onSortButtonPressed: function(oEvent) {
-            this._oVSD.open();
-        },
-        onSearchCustomersTable: function(oEvent) {
-            var sQuery = oEvent.getSource().getValue();
-            this._applySearchFilter(oEvent.getSource().getValue());
+            var sTableID = "customersTable"
+            var aValidSortFields = ["CompanyName", "ContactName", "City", "Country"]
+            var sRouteToMatch = "customersOverview"
+            this.onInitOwnPage(sTableID, aValidSortFields, sRouteToMatch)
         },
         _initViewSettingsDialog: function() {
             var oRouter = this.getRouter();
@@ -73,6 +55,8 @@ sap.ui.define([
             if (sSearchQuery && sSearchQuery.length > 0) {
                 aFilters.push(new Filter("ContactName", FilterOperator.Contains, sSearchQuery));
                 aFilters.push(new Filter("CompanyName", FilterOperator.Contains, sSearchQuery));
+                aFilters.push(new Filter("City", FilterOperator.Contains, sSearchQuery));
+                aFilters.push(new Filter("Country", FilterOperator.Contains, sSearchQuery));
                 oFilter = new Filter({ filters: aFilters, and: false }); // OR filter
             } else {
                 oFilter = null;
@@ -80,42 +64,6 @@ sap.ui.define([
             // update list binding
             oBinding = this._oTable.getBinding("items");
             oBinding.filter(oFilter, "Application");
-        },
-        /**
-         * Applies sorting on our table control.
-         * @param {string} sSortField	  the name of the field used for sorting
-         * @param {string} sortDescending  true or false as a string or boolean value to specify a descending sorting
-         * @private
-         */
-        _applySorter: function(sSortField, sortDescending) {
-            var bSortDescending, oBinding, oSorter;
-            // only continue if we have a valid sort field
-            if (sSortField && this._aValidSortFields.indexOf(sSortField) > -1) {
-                // convert the sort order to a boolean value
-                if (typeof sortDescending === "string") {
-                    bSortDescending = sortDescending === "true";
-                } else if (typeof sortDescending === "boolean") {
-                    bSortDescending = sortDescending;
-                } else {
-                    bSortDescending = false;
-                }
-                // sort only if the sorter has changed
-                if (this._sSortField && this._sSortField === sSortField && this._bSortDescending === bSortDescending) {
-                    return;
-                }
-                this._sSortField = sSortField;
-                this._bSortDescending = bSortDescending;
-                oSorter = new Sorter(sSortField, bSortDescending);
-                // sync with View Settings Dialog
-                this._syncViewSettingsDialogSorter(sSortField, bSortDescending);
-                oBinding = this._oTable.getBinding("items");
-                oBinding.sort(oSorter);
-            }
-        },
-        _syncViewSettingsDialogSorter: function(sSortField, bSortDescending) {
-            // Note: no input validation is implemented here 
-            this._oVSD.setSelectedSortItem(sSortField);
-            this._oVSD.setSortDescending(bSortDescending);
         },
         onItemPress: function(oEvent) {
             var oItem = oEvent.getParameter("listItem")
